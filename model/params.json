@@ -1,0 +1,5 @@
+{
+  "_description": "Saved model parameters used by src/predict.py.",
+  "theta0": 0.0,
+  "theta1": 0.0
+}
