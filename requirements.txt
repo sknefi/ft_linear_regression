@@ -1,0 +1,4 @@
+#
+# External dependency used only for the bonus plotting program.
+#
+matplotlib
