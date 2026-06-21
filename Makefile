@@ -5,10 +5,10 @@ PIP ?= $(VENV)/bin/pip3
 
 .PHONY: all help venv install train predict plot metrics clean fclean re
 
-# Run the automatic project workflow.
+# Run the automatic project workflow
 all: train metrics
 
-# Show available commands.
+# Show available commands
 help:
 	@echo "Available targets:"
 	@echo "  make all      - train the model and calculate precision"
@@ -22,38 +22,38 @@ help:
 	@echo "  make fclean   - clean and reset model parameters"
 	@echo "  make re       - reset model, then train again"
 
-# Create the local Python virtual environment.
+# Create the local Python virtual environment
 venv:
 	$(SYSTEM_PYTHON) -m venv $(VENV)
 
-# Install Python dependencies.
+# Install Python dependencies
 install: venv
 	$(PIP) install -r requirements.txt
 
-# Train theta0 and theta1.
+# Train theta0 and theta1
 train: venv
 	$(PYTHON) src/train.py
 
-# Ask for mileage and estimate a price.
+# Ask for mileage and estimate a price
 predict: venv
 	$(PYTHON) src/predict.py
 
-# Display the dataset and regression line.
-plot: install
+# Display the dataset and regression line
+plot: venv
 	$(PYTHON) src/plot.py
 
-# Display precision metrics for the trained model.
+# Display precision metrics for the trained model
 metrics: venv
 	$(PYTHON) src/metrics.py
 
-# Remove Python cache files.
+# Remove Python cache files
 clean:
 	find . -type d -name "__pycache__" -prune -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
 
-# Reset generated files and saved parameters.
+# Reset generated files and saved parameters
 fclean: clean
 	$(PYTHON) -c 'import json; json.dump({"_description": "Saved model parameters used by src/predict.py.", "theta0": 0.0, "theta1": 0.0}, open("model/params.json", "w"), indent=2); print()'
 
-# Reset and train again.
+# Reset and train again
 re: fclean train
