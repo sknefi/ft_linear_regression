@@ -65,3 +65,7 @@ def save_params(theta0: float, theta1: float, path: Path = PARAMS_PATH) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(params, f, indent=2)
         f.write("\n")
+
+def estimate_price(mileage: float, theta0: float, theta1: float) -> float:
+    """Estimate price using theta0 + theta1 * mileage."""
+    return theta0 + (mileage * theta1)
