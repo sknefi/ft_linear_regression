@@ -23,7 +23,9 @@ help:
 	@echo "  make re       - reset model, then train again"
 
 # Create the local Python virtual environment
-venv:
+venv: $(VENV)/bin/python3
+
+$(VENV)/bin/python3:
 	$(SYSTEM_PYTHON) -m venv $(VENV)
 
 # Install Python dependencies
