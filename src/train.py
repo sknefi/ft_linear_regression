@@ -82,17 +82,12 @@ def main() -> None:
     theta0, theta1 = train_model(mileages, prices, LEARNING_RATE, ITERATIONS)
     save_params(theta0, theta1)
 
-    mse_before = mean_squared_error(mileages, prices, 0, 0)
-    mse_after = mean_squared_error(mileages, prices, theta0, theta1)
-
     print("Training complete")
     print(f"Rows: {len(mileages)}")
     print(f"Learning rate: {LEARNING_RATE}")
     print(f"Iterations: {ITERATIONS}")
     print(f"theta0: {theta0}")
     print(f"theta1: {theta1}")
-    print(f"MSE before: {mse_before:.2f}")    
-    print(f"MSE after:  {mse_after:.2f}")
 
 
 if __name__ == "__main__":
