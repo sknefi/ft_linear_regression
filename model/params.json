@@ -1,5 +1,5 @@
 {
-  "_description": "Set to default values before running the program",
-  "theta0": 0.0,
-  "theta1": 0.0
+  "_description": "Saved model parameters used by src/predict.py",
+  "theta0": 8499.599649933163,
+  "theta1": -0.02144896359170181
 }

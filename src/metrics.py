@@ -45,7 +45,12 @@ def root_mean_squared_error(
 
 
 def r2_score(real_prices: list[float], predicted_prices: list[float]) -> float:
-    """Calculate how much variance is explained by the model."""
+    """Calculate how much variance is explained by the model.
+
+    1.0  = perfect model
+    0.0  = model is no better than predicting the average price
+    < 0  = model is worse than predicting the average price
+    """
     validate_price_lists(real_prices, predicted_prices)
 
     average_price = sum(real_prices) / len(real_prices)
@@ -66,7 +71,11 @@ def mean_absolute_percentage_error(
     real_prices: list[float],
     predicted_prices: list[float],
 ) -> float:
-    """Calculate the average prediction error as a percentage."""
+    """Calculate the average prediction error as a percentage.
+
+    For example, 10.0 means predictions are wrong by about 10 percent on
+    average.
+    """
     validate_price_lists(real_prices, predicted_prices)
 
     total_error = 0.0
