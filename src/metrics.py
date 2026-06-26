@@ -16,6 +16,16 @@ def validate_price_lists(real_prices: list[float], predicted_prices: list[float]
         raise ValueError("Price list is empty")
 
 
+def mean_absolute_error(real_prices: list[float], predicted_prices: list[float]) -> float:
+    """Calculate the average absolute prediction error."""
+    validate_price_lists(real_prices, predicted_prices)
+
+    total_error = 0.0
+    for real_price, predicted_price in zip(real_prices, predicted_prices):
+        total_error += abs(predicted_price - real_price)
+    return total_error / len(real_prices)
+
+
 def mean_squared_error(real_prices: list[float], predicted_prices: list[float]) -> float:
     """Calculate the average squared prediction error."""
     validate_price_lists(real_prices, predicted_prices)
@@ -32,16 +42,6 @@ def root_mean_squared_error(
 ) -> float:
     """Calculate the square root of the average squared prediction error."""
     return sqrt(mean_squared_error(real_prices, predicted_prices))
-
-
-def mean_absolute_error(real_prices: list[float], predicted_prices: list[float]) -> float:
-    """Calculate the average absolute prediction error."""
-    validate_price_lists(real_prices, predicted_prices)
-
-    total_error = 0.0
-    for real_price, predicted_price in zip(real_prices, predicted_prices):
-        total_error += abs(predicted_price - real_price)
-    return total_error / len(real_prices)
 
 
 def r2_score(real_prices: list[float], predicted_prices: list[float]) -> float:
