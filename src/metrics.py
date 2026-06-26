@@ -95,8 +95,8 @@ def main() -> None:
     print(f"MSE: {mse:.2f}")
     print(f"RMSE: {rmse:.2f}")
     print(f"R2: {r2:.4f}")
-    print(f"Average precision: {100 - mape:.2f}%")
-    print(f"Average error: {mape:.2f}%")
+    print(f"MAPE: Average precision: {100 - mape:.2f}%")
+    print(f"MAPE: Average error: {mape:.2f}%")
 
 
 if __name__ == "__main__":
