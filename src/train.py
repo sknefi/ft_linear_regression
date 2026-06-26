@@ -5,6 +5,7 @@ theta1 into model/params.json.
 """
 
 from utils import estimate_price, load_dataset, save_params
+from metrics import mean_squared_error
 
 LEARNING_RATE = 0.1
 ITERATIONS = 10000
@@ -15,30 +16,6 @@ def normalize(value: float, min_value: float, max_value: float) -> float:
     if max_value == min_value:
         raise ValueError("Cannot normalize when min_value equals max_value")
     return (value - min_value) / (max_value - min_value)
-
-
-def denormalize(value: float, min_value: float, max_value: float) -> float:
-    """Convert a normalized value back to the original range."""
-    return value * (max_value - min_value) + min_value
-
-
-def mean_squared_error(
-    mileages: list[float],
-    prices: list[float],
-    theta0: float,
-    theta1: float,
-) -> float:
-    """Calculate the average squared prediction error."""
-    if len(mileages) != len(prices):
-        raise ValueError("Mileage and price lists must have the same length")
-    if not mileages:
-        raise ValueError("Dataset is empty")
-
-    total_error = 0.0
-    for mileage, price in zip(mileages, prices):
-        error = estimate_price(mileage, theta0, theta1) - price
-        total_error += error ** 2
-    return total_error / len(mileages)
 
 
 def convert_normalized_thetas(
@@ -105,7 +82,8 @@ def main() -> None:
     theta0, theta1 = train_model(mileages, prices, LEARNING_RATE, ITERATIONS)
     save_params(theta0, theta1)
 
-    mse = mean_squared_error(mileages, prices, theta0, theta1)
+    mse_before = mean_squared_error(mileages, prices, 0, 0)
+    mse_after = mean_squared_error(mileages, prices, theta0, theta1)
 
     print("Training complete")
     print(f"Rows: {len(mileages)}")
@@ -113,7 +91,8 @@ def main() -> None:
     print(f"Iterations: {ITERATIONS}")
     print(f"theta0: {theta0}")
     print(f"theta1: {theta1}")
-    print(f"MSE: {mse}")
+    print(f"MSE before: {mse_before:.2f}")    
+    print(f"MSE after:  {mse_after:.2f}")
 
 
 if __name__ == "__main__":
