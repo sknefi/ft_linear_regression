@@ -4,7 +4,7 @@ This file will read data/data.csv, run gradient descent, and save theta0 and
 theta1 into model/params.json.
 """
 
-from utils import *
+from utils import estimate_price, load_dataset, save_params
 
 LEARNING_RATE = 0.1
 ITERATIONS = 10000
