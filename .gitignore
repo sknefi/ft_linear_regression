@@ -25,3 +25,6 @@ env/
 # Generated project outputs
 plots/
 output/
+
+# For evaluation to keep thetas on value=0
+model/
