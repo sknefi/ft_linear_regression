@@ -12,12 +12,21 @@ estimatePrice(mileage) = theta0 + theta1 * mileage
 The model is trained manually with gradient descent. No library is used to train
 the regression model.
 
+## Preview
+
+![Regression plot](docs/plot.png)
+
+![Prediction example](docs/prediction.png)
+
 ## Structure
 
 ```text
 .
 ├── data/
 │   └── data.csv
+├── docs/
+│   ├── plot.png
+│   └── prediction.png
 ├── model/
 │   └── params.json
 ├── src/
@@ -39,6 +48,8 @@ the regression model.
 - `src/metrics.py`: bonus precision metrics.
 - `src/utils.py`: shared helpers for data loading, parameters, and hypothesis.
 - `data/data.csv`: training dataset.
+- `docs/plot.png`: preview of the plotted data and regression line.
+- `docs/prediction.png`: preview of the prediction program.
 - `model/params.json`: saved model parameters.
 
 ## Commands
