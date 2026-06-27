@@ -68,5 +68,5 @@ def save_params(theta0: float, theta1: float, path: Path = PARAMS_PATH) -> None:
 
 
 def estimate_price(mileage: float, theta0: float, theta1: float) -> float:
-    """Estimate price using theta0 + theta1 * mileage."""
+    """Subject hypothesis: estimatePrice(mileage) = theta0 + theta1 * mileage."""
     return theta0 + (mileage * theta1)

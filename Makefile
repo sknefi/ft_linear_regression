@@ -55,7 +55,7 @@ clean:
 
 # Reset generated files and saved parameters
 fclean: clean
-	$(PYTHON) -c 'import json; json.dump({"_description": "Saved model parameters used by src/predict.py.", "theta0": 0.0, "theta1": 0.0}, open("model/params.json", "w"), indent=2); print()'
+	$(PYTHON) -c 'import json; json.dump({"_description": "Saved model parameters as default values=0.", "theta0": 0.0, "theta1": 0.0}, open("model/params.json", "w"), indent=2); print()'
 
 # Reset and train again
 re: fclean train

@@ -5,7 +5,6 @@ theta1 into model/params.json.
 """
 
 from utils import estimate_price, load_dataset, save_params
-from metrics import mean_squared_error
 
 LEARNING_RATE = 0.1
 ITERATIONS = 10000
