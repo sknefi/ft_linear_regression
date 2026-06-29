@@ -120,6 +120,28 @@ make re
 
 Reset the model, then train again.
 
+## Program Flow
+
+```mermaid
+flowchart TD
+    A["data/data.csv"] --> B["make train"]
+    B --> C["src/train.py"]
+    C --> D["Gradient descent"]
+    D --> E["model/params.json"]
+
+    E --> F["make predict"]
+    F --> G["src/predict.py"]
+    G --> H["Estimated price"]
+
+    E --> I["make plot"]
+    A --> I
+    I --> J["Dataset graph with regression line"]
+
+    E --> K["make metrics"]
+    A --> K
+    K --> L["MAE, MSE, RMSE, R2, MAPE"]
+```
+
 ## Training
 
 The training program starts with:
@@ -147,6 +169,27 @@ theta1 -= tmp_theta1
 Mileage is normalized during training to keep gradient descent stable. The final
 theta values are converted back so prediction still uses raw mileage with the
 subject hypothesis.
+
+```mermaid
+flowchart TD
+    A["Load km and price from data/data.csv"] --> B["Find min and max mileage"]
+    B --> C["Normalize mileage to 0..1"]
+    C --> D["Set theta0 = 0 and theta1 = 0"]
+    D --> E["Start training iteration"]
+    E --> F["Predict price with current theta values"]
+    F --> G["error = predicted price - real price"]
+    G --> H["Add error to theta0 sum"]
+    G --> I["Add error * mileage to theta1 sum"]
+    H --> J["Compute tmp_theta0"]
+    I --> K["Compute tmp_theta1"]
+    J --> L["Update theta0"]
+    K --> M["Update theta1"]
+    L --> N{"More iterations?"}
+    M --> N
+    N -- "yes" --> E
+    N -- "no" --> O["Convert theta values back to real mileage scale"]
+    O --> P["Save theta0 and theta1 to model/params.json"]
+```
 
 ## Precision
 

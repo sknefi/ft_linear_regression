@@ -57,6 +57,7 @@ def train_model(
     theta1 = 0.0
     m = len(normalized_mileages)
 
+    # Gradient descent
     for _ in range(iterations):
         sum_theta0 = 0.0
         sum_theta1 = 0.0
